@@ -7,10 +7,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/", "/private/"],
+        disallow: ["/api/", "/private/"],
       },
     ],
     sitemap: `${siteConfig.url}/sitemap.xml`,
-    host: "robswindowcleaning.co.uk",
   };
 }

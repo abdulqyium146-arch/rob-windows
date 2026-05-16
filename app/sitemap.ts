@@ -8,10 +8,6 @@ const url = siteConfig.url;
 const blogSlugs = [
   "how-often-should-windows-be-cleaned-cornwall",
   "what-is-pure-water-window-cleaning",
-  "gutter-cleaning-guide-cornwall",
-  "conservatory-roof-cleaning-guide",
-  "window-cleaning-newquay-seasonal-guide",
-  "holiday-let-window-cleaning-cornwall",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
