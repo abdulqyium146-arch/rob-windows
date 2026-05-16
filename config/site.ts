@@ -4,7 +4,7 @@ export const siteConfig = {
   description:
     "Professional window cleaning, gutter cleaning, conservatory roof cleaning and exterior property cleaning services in Newquay, Cornwall. Trusted, reliable and fully insured.",
   url: "https://robswindowcleaning.co.uk",
-  phone: "07XXX XXXXXX",
+  phone: "+44 7949 582591",
   email: "rob@robswindowcleaning.co.uk",
   address: {
     streetAddress: "Newquay",
@@ -20,6 +20,7 @@ export const siteConfig = {
   social: {
     facebook: "https://facebook.com/robswindowcleaning",
     instagram: "https://instagram.com/robswindowcleaning",
+    whatsapp: "https://wa.me/447949582591",
   },
   openingHours: [
     "Mo-Fr 08:00-18:00",

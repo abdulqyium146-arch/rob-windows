@@ -68,7 +68,6 @@ export const metadata: Metadata = {
     images: ["/images/og-image.jpg"],
   },
   alternates: { canonical: siteConfig.url },
-  verification: { google: "YOUR_GOOGLE_VERIFICATION_CODE" },
 };
 
 export const viewport: Viewport = {

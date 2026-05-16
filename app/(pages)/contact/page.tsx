@@ -102,15 +102,20 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              <div className="rounded-2xl border border-brand-100 bg-brand-50 p-6">
+              <a
+                href={siteConfig.social.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-2xl border border-green-100 bg-green-50 p-6 hover:bg-green-100 transition-colors"
+              >
                 <div className="flex items-center gap-2 mb-3">
-                  <MessageSquare className="h-5 w-5 text-brand-600" />
+                  <MessageSquare className="h-5 w-5 text-green-600" />
                   <span className="text-sm font-semibold text-slate-900">WhatsApp Welcome</span>
                 </div>
                 <p className="text-sm text-slate-600">
-                  Prefer to message? WhatsApp us on {siteConfig.phone} for a quick response — we read and reply to messages throughout the day.
+                  Prefer to message? Tap to open WhatsApp — we read and reply to messages throughout the day.
                 </p>
-              </div>
+              </a>
             </div>
 
             {/* Form */}

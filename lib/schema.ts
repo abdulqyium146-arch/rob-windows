@@ -8,7 +8,7 @@ export function localBusinessSchema() {
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
-    telephone: siteConfig.phone,
+    telephone: siteConfig.phone.replace(/\s/g, ""),
     email: siteConfig.email,
     address: {
       "@type": "PostalAddress",

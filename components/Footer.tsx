@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, Star, Sparkles, Facebook, Instagram, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Star, Sparkles, Facebook, Instagram, Clock, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
 const serviceLinks = [
@@ -77,6 +77,10 @@ export default function Footer() {
               <span className="ml-2 text-xs text-slate-400">{siteConfig.rating.value}/5 ({siteConfig.rating.count} reviews)</span>
             </div>
             <div className="flex gap-3">
+              <a href={siteConfig.social.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+                className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-800 text-slate-400 hover:bg-green-600 hover:text-white transition-colors">
+                <MessageCircle className="h-4 w-4" />
+              </a>
               <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"
                 className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-800 text-slate-400 hover:bg-brand-600 hover:text-white transition-colors">
                 <Facebook className="h-4 w-4" />
