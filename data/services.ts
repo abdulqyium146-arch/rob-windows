@@ -23,22 +23,22 @@ export const services: Service[] = [
     price: "From £10 per visit",
     faqs: [
       {
-        question: "How much does window cleaning cost in Newquay?",
+        question: "How do I set up a regular window cleaning schedule in Newquay?",
         answer:
-          "Window cleaning in Newquay typically costs from £10 for a small terraced house, £15–£20 for a semi-detached, and £25+ for larger detached properties. Commercial window cleaning is priced based on access, frequency and size. Contact us for a free no-obligation quote.",
+          "Simply call or message us with your address and property type. We'll agree a schedule — 4-weekly, 6-weekly or 8-weekly — and add you to our Newquay round. We text you the evening before every visit so you always know when we're coming, and there's no contract so you can pause or cancel at any time.",
       },
       {
-        question: "How often should I have my windows cleaned in Cornwall?",
+        question: "Will you clean my windows even if I'm not at home?",
         answer:
-          "Due to Cornwall's coastal environment and salty sea air, we recommend windows are cleaned every 4–6 weeks. Salt deposits and grime build up quickly near the coast, so regular cleaning protects your frames and glass and keeps your property looking its best.",
+          "Yes — for exterior-only window cleaning you don't need to be in. We let ourselves to the appropriate side of the property, complete the clean, and leave everything secure. Key-safe access is available if needed. We text the day before every visit.",
       },
       {
-        question: "What is pure water window cleaning?",
+        question: "Do you clean the window frames and sills as well as the glass?",
         answer:
-          "Pure water window cleaning uses water that has been filtered through a multi-stage purification system to remove all minerals and impurities. When applied to glass via a soft brush on a telescopic pole, the pure water dissolves dirt and then evaporates without leaving any residue — giving a perfectly streak-free finish.",
+          "Yes. Our pure water fed pole system cleans the glass, frames, sills and reveals as standard. Frames and sills are a common source of algae and salt deposits — cleaning them as part of the same visit gives a much more thorough result.",
       },
       {
-        question: "Do you clean interior windows?",
+        question: "Do you clean interior windows in Newquay?",
         answer:
           "Yes. We offer both interior and exterior window cleaning. Interior cleaning is carried out by appointment and is available for residential and commercial customers across Newquay and the surrounding areas.",
       },

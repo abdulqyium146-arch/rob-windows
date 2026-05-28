@@ -191,7 +191,17 @@ export default function LocationPageTemplate({ location }: LocationPageTemplateP
                       itemScope
                       itemType="https://schema.org/Review"
                     >
-                      <div className="flex gap-0.5 mb-3">
+                      <div itemProp="itemReviewed" itemScope itemType="https://schema.org/LocalBusiness" className="sr-only">
+                        <meta itemProp="name" content="Rob's Window Cleaning" />
+                      </div>
+                      <div
+                        itemProp="reviewRating"
+                        itemScope
+                        itemType="https://schema.org/Rating"
+                        className="flex gap-0.5 mb-3"
+                      >
+                        <meta itemProp="ratingValue" content={String(t.rating)} />
+                        <meta itemProp="bestRating" content="5" />
                         {[1, 2, 3, 4, 5].map((s) => (
                           <Star key={s} className="h-4 w-4 text-amber-400 fill-amber-400" />
                         ))}
@@ -200,7 +210,14 @@ export default function LocationPageTemplate({ location }: LocationPageTemplateP
                         "{t.text}"
                       </p>
                       <footer className="flex items-center justify-between">
-                        <cite className="text-sm font-semibold text-slate-800 not-italic" itemProp="author">{t.name}</cite>
+                        <cite
+                          className="text-sm font-semibold text-slate-800 not-italic"
+                          itemProp="author"
+                          itemScope
+                          itemType="https://schema.org/Person"
+                        >
+                          <span itemProp="name">{t.name}</span>
+                        </cite>
                         <span className="text-xs text-slate-400">{t.location}</span>
                       </footer>
                     </blockquote>

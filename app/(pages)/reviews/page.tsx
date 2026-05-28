@@ -109,8 +109,18 @@ export default function ReviewsPage() {
                 itemScope
                 itemType="https://schema.org/Review"
               >
+                <div itemProp="itemReviewed" itemScope itemType="https://schema.org/LocalBusiness" className="sr-only">
+                  <meta itemProp="name" content="Rob's Window Cleaning" />
+                </div>
                 <div className="flex items-start justify-between mb-4">
-                  <div className="flex gap-0.5">
+                  <div
+                    className="flex gap-0.5"
+                    itemProp="reviewRating"
+                    itemScope
+                    itemType="https://schema.org/Rating"
+                  >
+                    <meta itemProp="ratingValue" content={String(t.rating)} />
+                    <meta itemProp="bestRating" content="5" />
                     {[1, 2, 3, 4, 5].map((s) => (
                       <Star
                         key={s}
@@ -127,7 +137,14 @@ export default function ReviewsPage() {
                 </blockquote>
                 <div className="flex items-center justify-between">
                   <div>
-                    <cite className="text-sm font-semibold text-slate-900 not-italic" itemProp="author">{t.name}</cite>
+                    <cite
+                      className="text-sm font-semibold text-slate-900 not-italic"
+                      itemProp="author"
+                      itemScope
+                      itemType="https://schema.org/Person"
+                    >
+                      <span itemProp="name">{t.name}</span>
+                    </cite>
                     <div className="text-xs text-slate-400">{t.location}</div>
                     <div className="text-xs text-brand-600 mt-0.5">{t.service}</div>
                   </div>
