@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin, Clock, MessageSquare } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import QuoteForm from "@/components/QuoteForm";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, contactPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Contact Rob's Window Cleaning | Newquay, Cornwall",
@@ -46,6 +46,10 @@ const contactDetails = [
 export default function ContactPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema()) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

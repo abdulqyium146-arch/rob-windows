@@ -7,7 +7,7 @@ import LocationCards from "@/components/LocationCards";
 import TrustBadges from "@/components/TrustBadges";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SectionHeader from "@/components/SectionHeader";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, collectionPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Areas We Cover | Window Cleaning Across Cornwall",
@@ -25,6 +25,22 @@ const extendedAreas = [
 export default function AreasPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            collectionPageSchema(
+              "Window Cleaning Areas Across Cornwall",
+              `${siteConfig.url}/areas`,
+              "Rob's Window Cleaning covers Newquay and all of North and Mid Cornwall. Find your area below.",
+              locations.map((l) => ({
+                name: `Window Cleaning ${l.name}`,
+                url: `${siteConfig.url}/${l.slug}`,
+              }))
+            )
+          ),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

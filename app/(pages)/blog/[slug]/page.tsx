@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Calendar, Tag, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { formatDate } from "@/lib/utils";
-import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema, blogPostingSchema, howToSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQAccordion from "@/components/FAQAccordion";
 
@@ -18,6 +18,8 @@ interface BlogPost {
   tags: string[];
   content: string;
   faqs?: Array<{ question: string; answer: string }>;
+  relatedLinks?: Array<{ label: string; href: string }>;
+  howTo?: { description: string; steps: Array<{ name: string; text: string }> };
 }
 
 function renderContent(markdown: string): string {
@@ -112,6 +114,10 @@ For most Newquay homeowners, we recommend starting with a 4–6 weekly schedule 
           "Salt and mineral deposits will eventually etch into the glass surface, causing permanent damage. Algae growth in seals degrades rubber faster, potentially leading to draughts and water ingress. Regular cleaning is protective maintenance.",
       },
     ],
+    relatedLinks: [
+      { label: "Window Cleaning Cornwall", href: "/window-cleaning-cornwall" },
+      { label: "Window Cleaning Newquay", href: "/window-cleaning-newquay" },
+    ],
   },
   "what-is-pure-water-window-cleaning": {
     slug: "what-is-pure-water-window-cleaning",
@@ -186,6 +192,20 @@ Pure water cleaning uses no chemicals — just water. The water used in the proc
           "Yes. Pure water contains no chemicals or solvents and is entirely safe for all types of glazing including double-glazed units, triple glazing, tinted glass and Low-E coatings.",
       },
     ],
+    relatedLinks: [
+      { label: "Window Cleaning Cornwall", href: "/window-cleaning-cornwall" },
+      { label: "Residential Window Cleaning", href: "/residential-window-cleaning-newquay" },
+    ],
+    howTo: {
+      description: "How to use pure water technology for streak-free window cleaning",
+      steps: [
+        { name: "Fill the pure water tank", text: "Fill the vehicle tank with water purified to zero TDS using sediment filter, carbon filter, reverse osmosis and deionisation resin stages." },
+        { name: "Attach the water-fed pole and brush", text: "Connect the soft-bristle brush head to the telescopic pole and feed the pure water supply line through it." },
+        { name: "Apply pure water to the glass", text: "Use the brush to agitate and dissolve dirt, salt and mineral deposits on the glass surface while the pure water flows." },
+        { name: "Rinse thoroughly", text: "Rinse the glass and frames with pure water, flushing all loosened dirt away from the window surface." },
+        { name: "Allow to dry naturally", text: "Pure water leaves zero mineral residue as it dries, producing a perfectly streak-free and spot-free finish." },
+      ],
+    },
   },
   "gutter-cleaning-guide-cornwall": {
     slug: "gutter-cleaning-guide-cornwall",
@@ -292,6 +312,10 @@ At Rob's Window Cleaning we provide free no-obligation quotes before starting an
           "Gutter cleaning in Cornwall typically costs between £50 and £150 depending on property size, number of storeys and the volume of debris. We provide free no-obligation quotes for all properties.",
       },
     ],
+    relatedLinks: [
+      { label: "Gutter Cleaning Cornwall", href: "/gutter-cleaning-cornwall" },
+      { label: "Gutter Cleaning Newquay", href: "/gutter-cleaning-newquay" },
+    ],
   },
   "conservatory-roof-cleaning-guide": {
     slug: "conservatory-roof-cleaning-guide",
@@ -387,6 +411,19 @@ Severe lichen colonisation may require a two-stage treatment — an initial bioc
           "Conservatory roof cleaning in Cornwall typically costs between £120 and £350 including panels, gutters and UPVC frames. We provide free no-obligation quotes for all conservatory sizes.",
       },
     ],
+    relatedLinks: [
+      { label: "Conservatory Roof Cleaning Cornwall", href: "/conservatory-roof-cleaning-cornwall" },
+      { label: "Conservatory Cleaning Newquay", href: "/conservatory-roof-cleaning-newquay" },
+    ],
+    howTo: {
+      description: "How to clean a conservatory roof safely using professional soft-wash methods",
+      steps: [
+        { name: "Apply biodegradable biocide", text: "Apply a specialist biodegradable biocide to the entire roof surface. Allow it to dwell for the recommended period to kill algae, mould and lichen at the root." },
+        { name: "Low-pressure pure water rinse", text: "Rinse the roof at low pressure using pure water to remove the dead biological material without damaging panels or gasket seals." },
+        { name: "Clean UPVC frames and gutters", text: "Clean all UPVC frames, sills and gutters using UPVC-safe cleaning solutions as part of the service." },
+        { name: "Apply post-treatment biocide", text: "Apply a residual biocide treatment to slow future regrowth, extending the time before the next professional clean is needed." },
+      ],
+    },
   },
   "window-cleaning-newquay-seasonal-guide": {
     slug: "window-cleaning-newquay-seasonal-guide",
@@ -459,6 +496,10 @@ At Rob's Window Cleaning, we manage your schedule and send a reminder text the d
         answer:
           "Yes. Winter salt deposits are particularly damaging because cold temperatures slow evaporation, leaving salt on glass longer. Pure water cleaning works effectively in cold weather. A winter clean prevents etching damage and keeps your property well-maintained year-round.",
       },
+    ],
+    relatedLinks: [
+      { label: "Window Cleaning Newquay", href: "/window-cleaning-newquay" },
+      { label: "Window Cleaning Cornwall", href: "/window-cleaning-cornwall" },
     ],
   },
   "holiday-let-window-cleaning-cornwall": {
@@ -558,6 +599,10 @@ The cost of monthly professional window cleaning across a full season is typical
           "Yes. We cover sea view properties across Newquay, Perranporth, Padstow and the wider Cornwall coast. Coastal properties require more frequent cleaning due to salt spray — we recommend monthly cleans for the best presentation.",
       },
     ],
+    relatedLinks: [
+      { label: "Commercial Window Cleaning Newquay", href: "/commercial-window-cleaning-newquay" },
+      { label: "Residential Window Cleaning Newquay", href: "/residential-window-cleaning-newquay" },
+    ],
   },
 };
 
@@ -618,14 +663,22 @@ export default async function BlogPostPage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(articleSchema(post)),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema(post)) }}
       />
       {post.faqs && post.faqs.length > 0 && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(post.faqs)) }}
+        />
+      )}
+      {post.howTo && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              howToSchema(post.title, post.howTo.description, `${siteConfig.url}/blog/${slug}`, post.howTo.steps)
+            ),
+          }}
         />
       )}
       <script
@@ -707,20 +760,27 @@ export default async function BlogPostPage({
               {/* CTA */}
               <div className="mt-12 rounded-2xl border border-brand-100 bg-brand-50 p-8">
                 <h3 className="text-xl font-bold text-slate-900 mb-3">
-                  Need Professional Window Cleaning in Cornwall?
+                  Need Professional Cleaning in Cornwall?
                 </h3>
                 <p className="text-sm text-slate-600 mb-5">
                   Get a free, no-obligation quote from Rob&apos;s Window Cleaning — Newquay&apos;s
                   trusted local specialists.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-col sm:flex-row gap-3 flex-wrap">
                   <Link href="/free-quote" className="btn-primary text-sm">
                     Get a Free Quote
                     <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <Link href="/window-cleaning-newquay" className="btn-secondary text-sm">
-                    Window Cleaning Newquay
-                  </Link>
+                  {post.relatedLinks?.map((link) => (
+                    <Link key={link.href} href={link.href} className="btn-secondary text-sm">
+                      {link.label}
+                    </Link>
+                  ))}
+                  {!post.relatedLinks && (
+                    <Link href="/window-cleaning-cornwall" className="btn-secondary text-sm">
+                      Window Cleaning Cornwall
+                    </Link>
+                  )}
                 </div>
               </div>
             </article>

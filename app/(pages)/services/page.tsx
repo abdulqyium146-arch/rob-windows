@@ -7,7 +7,7 @@ import ServiceCards from "@/components/ServiceCards";
 import TrustBadges from "@/components/TrustBadges";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SectionHeader from "@/components/SectionHeader";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, collectionPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Window Cleaning Services Newquay | All Exterior Cleaning Cornwall",
@@ -19,6 +19,19 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            collectionPageSchema(
+              "Exterior Cleaning Services Newquay Cornwall",
+              `${siteConfig.url}/services`,
+              "Complete exterior cleaning services across Newquay and Cornwall — window cleaning, gutter cleaning, conservatory roof cleaning, fascia & soffit cleaning, UPVC cleaning and more.",
+              services.map((s) => ({ name: s.title, url: `${siteConfig.url}/${s.slug}` }))
+            )
+          ),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -109,6 +122,32 @@ export default function ServicesPage() {
               </div>
               <p className="text-xs text-slate-400 mt-4">All prices are indicative. Free on-site or telephone quotes available for every job.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cornwall Hub Links */}
+      <section className="section-padding bg-brand-50 border-y border-brand-100">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="text-xl font-bold text-slate-900 mb-2">County-Wide Service Pages</h2>
+          <p className="text-sm text-slate-500 mb-6">
+            Serving customers across all of Cornwall — find your county-level service page below.
+          </p>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[
+              { label: "Window Cleaning Cornwall", href: "/window-cleaning-cornwall" },
+              { label: "Gutter Cleaning Cornwall", href: "/gutter-cleaning-cornwall" },
+              { label: "Conservatory Roof Cleaning Cornwall", href: "/conservatory-roof-cleaning-cornwall" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-center justify-between rounded-xl border border-brand-200 bg-white px-5 py-3.5 text-sm font-semibold text-brand-700 hover:border-brand-400 hover:shadow-soft transition-all"
+              >
+                {item.label}
+                <ArrowRight className="h-4 w-4 shrink-0" />
+              </Link>
+            ))}
           </div>
         </div>
       </section>

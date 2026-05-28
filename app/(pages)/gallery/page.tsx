@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, imageGallerySchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Gallery | Window Cleaning Results — Rob's Window Cleaning Cornwall",
@@ -29,6 +29,10 @@ const categories = ["All", ...new Set(galleryItems.map((g) => g.category))];
 export default function GalleryPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(imageGallerySchema()) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -105,10 +109,18 @@ export default function GalleryPage() {
             <p className="text-base text-slate-500 mb-6 max-w-xl mx-auto">
               Get a free, no-obligation quote and join 500+ happy customers across Newquay and Cornwall.
             </p>
-            <Link href="/free-quote" className="btn-primary">
-              Get a Free Quote
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link href="/free-quote" className="btn-primary">
+                Get a Free Quote
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/window-cleaning-cornwall" className="btn-secondary">
+                Window Cleaning Cornwall
+              </Link>
+              <Link href="/gutter-cleaning-cornwall" className="btn-secondary">
+                Gutter Cleaning Cornwall
+              </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -6,7 +6,7 @@ import { services } from "@/data/services";
 import { locations } from "@/data/locations";
 import { testimonials } from "@/data/testimonials";
 import { generalFaqs } from "@/data/faqs";
-import { faqSchema } from "@/lib/schema";
+import { faqSchema, homePageSchema, collectionPageSchema } from "@/lib/schema";
 import Hero from "@/components/Hero";
 import ServiceCards from "@/components/ServiceCards";
 import LocationCards from "@/components/LocationCards";
@@ -54,11 +54,33 @@ const whyUs = [
 export default function HomePage() {
   const mainFaqs = generalFaqs.slice(0, 8);
 
+  const serviceListItems = services.map((s) => ({
+    name: s.title,
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://robswindowcleaning.co.uk"}/${s.slug}`,
+  }));
+
   return (
     <>
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageSchema()) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(mainFaqs)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            collectionPageSchema(
+              "Exterior Cleaning Services Newquay Cornwall",
+              "https://robswindowcleaning.co.uk/services",
+              "Complete exterior cleaning services across Newquay and Cornwall — window cleaning, gutter cleaning, conservatory roof cleaning and more.",
+              serviceListItems
+            )
+          ),
+        }}
       />
 
       {/* Hero */}
@@ -79,6 +101,31 @@ export default function HomePage() {
               View All Services
               <ArrowRight className="h-4 w-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Cornwall-Wide Hub Services */}
+      <section className="py-10 bg-brand-50 border-y border-brand-100" aria-labelledby="cornwall-services-heading">
+        <div className="container mx-auto px-4 lg:px-8">
+          <p className="text-center text-xs font-semibold text-brand-700 uppercase tracking-wider mb-5" id="cornwall-services-heading">
+            County-Wide Coverage
+          </p>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[
+              { label: "Window Cleaning Cornwall", href: "/window-cleaning-cornwall", desc: "Pure water cleaning across all of Cornwall" },
+              { label: "Gutter Cleaning Cornwall", href: "/gutter-cleaning-cornwall", desc: "Gutter clearance and drainage restoration" },
+              { label: "Conservatory Cleaning Cornwall", href: "/conservatory-roof-cleaning-cornwall", desc: "Soft-wash algae removal for all roof types" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex flex-col gap-1 rounded-2xl border border-brand-200 bg-white px-5 py-4 hover:border-brand-400 hover:shadow-soft transition-all duration-200"
+              >
+                <span className="text-sm font-semibold text-brand-700">{item.label}</span>
+                <span className="text-xs text-slate-500">{item.desc}</span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

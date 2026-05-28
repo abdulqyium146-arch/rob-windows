@@ -3,6 +3,7 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { services } from "@/data/services";
 import { locations } from "@/data/locations";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Site Map | Rob's Window Cleaning Cornwall",
@@ -86,6 +87,18 @@ function Section({
 
 export default function SiteMapPage() {
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([
+              { name: "Home", url: siteConfig.url },
+              { name: "Site Map", url: `${siteConfig.url}/site-map` },
+            ])
+          ),
+        }}
+      />
     <main className="pt-28 pb-20 bg-white" id="main-content">
       <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
         {/* Header */}
@@ -156,5 +169,6 @@ export default function SiteMapPage() {
         </div>
       </div>
     </main>
+    </>
   );
 }

@@ -3,7 +3,7 @@ import { Star, Quote } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { testimonials, averageRating } from "@/data/testimonials";
 import { formatDate } from "@/lib/utils";
-import { reviewSchema, breadcrumbSchema } from "@/lib/schema";
+import { reviewSchema, breadcrumbSchema, reviewsPageSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import TrustBadges from "@/components/TrustBadges";
 
@@ -23,6 +23,10 @@ export default function ReviewsPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsPageSchema()) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

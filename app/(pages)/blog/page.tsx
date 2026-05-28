@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Clock, Tag } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, blogListingSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Window Cleaning Blog | Tips & Guides from Rob's Window Cleaning Cornwall",
@@ -74,6 +74,21 @@ const categories = [...new Set(blogPosts.map((p) => p.category))];
 export default function BlogPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            blogListingSchema(
+              blogPosts.map((p) => ({
+                slug: p.slug,
+                title: p.title,
+                description: p.description,
+                date: p.date,
+              }))
+            )
+          ),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

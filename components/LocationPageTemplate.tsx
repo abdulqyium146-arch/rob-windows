@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site";
 import { services } from "@/data/services";
 import { locations } from "@/data/locations";
 import { testimonials } from "@/data/testimonials";
-import { faqSchema, breadcrumbSchema, serviceSchema } from "@/lib/schema";
+import { faqSchema, breadcrumbSchema, serviceSchema, localBusinessPerLocationSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQAccordion from "@/components/FAQAccordion";
 import ServiceCards from "@/components/ServiceCards";
@@ -36,6 +36,21 @@ export default function LocationPageTemplate({ location }: LocationPageTemplateP
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            localBusinessPerLocationSchema({
+              name: location.name,
+              slug: location.slug,
+              postcode: location.postcode,
+              lat: location.lat,
+              lng: location.lng,
+              county: location.county,
+            })
+          ),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(location.faqs)) }}
@@ -254,6 +269,31 @@ export default function LocationPageTemplate({ location }: LocationPageTemplateP
             description="Based in Newquay, we cover a wide area of North and Mid Cornwall."
           />
           <LocationCards locations={nearbyLocations} />
+        </div>
+      </section>
+
+      {/* Cornwall-Wide Hub Links */}
+      <section className="py-10 bg-brand-50 border-t border-brand-100">
+        <div className="container mx-auto px-4 lg:px-8">
+          <p className="text-xs font-semibold text-brand-700 uppercase tracking-wider mb-4">
+            Services Across All of Cornwall
+          </p>
+          <div className="grid sm:grid-cols-3 gap-3">
+            {[
+              { label: "Window Cleaning Cornwall", href: "/window-cleaning-cornwall" },
+              { label: "Gutter Cleaning Cornwall", href: "/gutter-cleaning-cornwall" },
+              { label: "Conservatory Roof Cleaning Cornwall", href: "/conservatory-roof-cleaning-cornwall" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-center justify-between rounded-xl border border-brand-200 bg-white px-4 py-3 text-sm font-semibold text-brand-700 hover:border-brand-400 transition-colors"
+              >
+                {item.label}
+                <ArrowRight className="h-3.5 w-3.5 shrink-0" />
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </>
