@@ -14,13 +14,14 @@ const navItems = [
     label: "Services",
     href: "/services",
     children: [
-      { label: "Window Cleaning", href: "/window-cleaning-newquay" },
-      { label: "Gutter Cleaning", href: "/gutter-cleaning-newquay" },
-      { label: "Conservatory Roof Cleaning", href: "/conservatory-roof-cleaning-newquay" },
+      { label: "Window Cleaning Cornwall", href: "/window-cleaning-cornwall" },
+      { label: "Gutter Cleaning Cornwall", href: "/gutter-cleaning-cornwall" },
+      { label: "Conservatory Cleaning Cornwall", href: "/conservatory-roof-cleaning-cornwall" },
       { label: "Fascia & Soffit Cleaning", href: "/fascia-soffit-cleaning-newquay" },
       { label: "UPVC Cleaning", href: "/upvc-cleaning-newquay" },
       { label: "Commercial Window Cleaning", href: "/commercial-window-cleaning-newquay" },
       { label: "Residential Window Cleaning", href: "/residential-window-cleaning-newquay" },
+      { label: "All Services →", href: "/services" },
     ],
   },
   {

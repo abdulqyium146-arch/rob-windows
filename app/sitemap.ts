@@ -24,6 +24,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${url}/contact`, lastModified: new Date("2025-05-01"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${url}/free-quote`, lastModified: new Date("2025-05-01"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${url}/blog`, lastModified: new Date("2025-04-01"), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${url}/site-map`, lastModified: new Date("2025-05-01"), changeFrequency: "monthly", priority: 0.4 },
+    // Cornwall hub pages — county-level authority targets
+    { url: `${url}/window-cleaning-cornwall`, lastModified: new Date("2025-05-01"), changeFrequency: "monthly", priority: 0.95 },
+    { url: `${url}/gutter-cleaning-cornwall`, lastModified: new Date("2025-05-01"), changeFrequency: "monthly", priority: 0.95 },
+    { url: `${url}/conservatory-roof-cleaning-cornwall`, lastModified: new Date("2025-05-01"), changeFrequency: "monthly", priority: 0.95 },
   ];
 
   const servicePages: MetadataRoute.Sitemap = services.map((s) => ({

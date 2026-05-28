@@ -3,9 +3,9 @@ import { Phone, Mail, MapPin, Star, Sparkles, Facebook, Instagram, Clock, Messag
 import { siteConfig } from "@/config/site";
 
 const serviceLinks = [
-  { label: "Window Cleaning", href: "/window-cleaning-newquay" },
-  { label: "Gutter Cleaning", href: "/gutter-cleaning-newquay" },
-  { label: "Conservatory Roof Cleaning", href: "/conservatory-roof-cleaning-newquay" },
+  { label: "Window Cleaning Cornwall", href: "/window-cleaning-cornwall" },
+  { label: "Gutter Cleaning Cornwall", href: "/gutter-cleaning-cornwall" },
+  { label: "Conservatory Roof Cleaning Cornwall", href: "/conservatory-roof-cleaning-cornwall" },
   { label: "Fascia & Soffit Cleaning", href: "/fascia-soffit-cleaning-newquay" },
   { label: "UPVC Cleaning", href: "/upvc-cleaning-newquay" },
   { label: "Commercial Cleaning", href: "/commercial-window-cleaning-newquay" },
@@ -21,6 +21,17 @@ const areaLinks = [
   { label: "Wadebridge", href: "/window-cleaning-wadebridge" },
   { label: "Falmouth", href: "/window-cleaning-falmouth" },
   { label: "Redruth", href: "/window-cleaning-redruth" },
+  { label: "Bodmin", href: "/window-cleaning-bodmin" },
+  { label: "View All Areas →", href: "/areas" },
+];
+
+const guideLinks = [
+  { label: "How Often Should Windows Be Cleaned?", href: "/blog/how-often-should-windows-be-cleaned-cornwall" },
+  { label: "What Is Pure Water Cleaning?", href: "/blog/what-is-pure-water-window-cleaning" },
+  { label: "Gutter Cleaning Guide Cornwall", href: "/blog/gutter-cleaning-guide-cornwall" },
+  { label: "Conservatory Roof Cleaning Guide", href: "/blog/conservatory-roof-cleaning-guide" },
+  { label: "Seasonal Window Cleaning Newquay", href: "/blog/window-cleaning-newquay-seasonal-guide" },
+  { label: "Holiday Let Window Cleaning", href: "/blog/holiday-let-window-cleaning-cornwall" },
 ];
 
 export default function Footer() {
@@ -55,7 +66,7 @@ export default function Footer() {
 
       {/* Main footer content */}
       <div className="container mx-auto px-4 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand column */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5 mb-4">
@@ -63,7 +74,7 @@ export default function Footer() {
                 <Sparkles className="h-5 w-5 text-white" />
               </div>
               <div>
-                <span className="block text-sm font-bold text-white leading-tight">Rob's Window Cleaning</span>
+                <span className="block text-sm font-bold text-white leading-tight">Rob&apos;s Window Cleaning</span>
                 <span className="block text-xs text-brand-400 leading-tight">Newquay, Cornwall</span>
               </div>
             </Link>
@@ -120,6 +131,20 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Helpful Guides */}
+          <div>
+            <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">Helpful Guides</h3>
+            <ul className="space-y-2.5">
+              {guideLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-slate-400 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Contact */}
           <div>
             <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">Contact</h3>
@@ -163,11 +188,12 @@ export default function Footer() {
       <div className="border-t border-slate-800">
         <div className="container mx-auto px-4 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-500 text-center sm:text-left">
-            © {new Date().getFullYear()} Rob's Window Cleaning. All rights reserved. · Newquay, Cornwall.
+            © {new Date().getFullYear()} Rob&apos;s Window Cleaning. All rights reserved. · Newquay, Cornwall.
           </p>
           <div className="flex gap-5">
             <Link href="/privacy-policy" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Privacy Policy</Link>
-            <Link href="/sitemap.xml" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Sitemap</Link>
+            <Link href="/site-map" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Site Map</Link>
+            <Link href="/sitemap.xml" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">XML Sitemap</Link>
           </div>
         </div>
       </div>
