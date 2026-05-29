@@ -43,7 +43,7 @@ export const services: Service[] = [
           "Yes. We offer both interior and exterior window cleaning. Interior cleaning is carried out by appointment and is available for residential and commercial customers across Newquay and the surrounding areas.",
       },
     ],
-    image: "/images/window-cleaning-newquay.jpg",
+    image: "/images/window-cleaning-newquay-detached-house-result.webp",
     keywords: [
       "window cleaning Newquay",
       "window cleaner Newquay",
@@ -94,7 +94,7 @@ export const services: Service[] = [
           "Yes. We use high-reach vacuum systems and extended poles to safely clean gutters on two and three-storey properties without the need for ladders in most cases. This makes the process safer and avoids damage to fascias.",
       },
     ],
-    image: "/images/gutter-cleaning-newquay.jpg",
+    image: "/images/gutter-fascia-soffit-cleaning-newquay-roofline.webp",
     keywords: [
       "gutter cleaning Newquay",
       "gutter clearance Newquay",
@@ -138,7 +138,7 @@ export const services: Service[] = [
           "In Cornwall's damp maritime climate, conservatory roofs typically develop green algae and black streaking within 12–18 months. We recommend cleaning every 1–2 years with a biocide treatment to slow regrowth.",
       },
     ],
-    image: "/images/conservatory-roof-cleaning-newquay.jpg",
+    image: "/images/conservatory-window-cleaning-newquay-professional.webp",
     keywords: [
       "conservatory roof cleaning Newquay",
       "conservatory cleaning Cornwall",
@@ -176,7 +176,7 @@ export const services: Service[] = [
           "In the majority of cases, stained and green-algae-covered fascias can be fully restored with professional cleaning. Replacement is rarely necessary unless the UPVC is cracked or degraded. A clean roofline dramatically improves kerb appeal.",
       },
     ],
-    image: "/images/fascia-soffit-cleaning-newquay.jpg",
+    image: "/images/fascia-soffit-gutter-cleaning-newquay-upvc-roofline.webp",
     keywords: [
       "fascia cleaning Newquay",
       "soffit cleaning Newquay",
@@ -213,7 +213,7 @@ export const services: Service[] = [
           "Yes. We use specialist UPVC-safe cleaning products and low-pressure soft-wash techniques that remove staining without scratching or damaging the surface or rubber seals.",
       },
     ],
-    image: "/images/upvc-cleaning-newquay.jpg",
+    image: "/images/upvc-conservatory-cleaning-newquay-frames.webp",
     keywords: [
       "UPVC cleaning Newquay",
       "UPVC window cleaning Cornwall",
@@ -251,7 +251,7 @@ export const services: Service[] = [
           "Yes. We carry £5 million public liability insurance and can provide method statements and risk assessments for commercial clients on request.",
       },
     ],
-    image: "/images/commercial-window-cleaning-newquay.jpg",
+    image: "/images/residential-window-cleaning-newquay-detached-house.webp",
     keywords: [
       "commercial window cleaning Newquay",
       "business window cleaning Cornwall",
@@ -289,7 +289,7 @@ export const services: Service[] = [
           "Yes. We work with many holiday let and Airbnb property owners across Newquay and Cornwall. We can co-ordinate cleans between guest changeovers and offer flexible scheduling.",
       },
     ],
-    image: "/images/residential-window-cleaning-newquay.jpg",
+    image: "/images/window-cleaning-newquay-semi-detached-upvc.webp",
     keywords: [
       "residential window cleaning Newquay",
       "house window cleaning Newquay",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
@@ -13,15 +14,69 @@ export const metadata: Metadata = {
 };
 
 const galleryItems = [
-  { id: 1, category: "Window Cleaning", location: "Newquay", alt: "Sparkling clean windows on a detached house in Newquay after professional window cleaning" },
-  { id: 2, category: "Gutter Cleaning", location: "Perranporth", alt: "Before and after gutter cleaning — blocked gutters cleared in Perranporth, Cornwall" },
-  { id: 3, category: "Conservatory Cleaning", location: "Padstow", alt: "Conservatory roof cleaned — green algae removed from polycarbonate roof in Padstow" },
-  { id: 4, category: "Window Cleaning", location: "Truro", alt: "Commercial window cleaning in Truro city centre — shop front windows gleaming" },
-  { id: 5, category: "Fascia & Soffit", location: "Wadebridge", alt: "Fascia and soffit cleaning — white UPVC restored after green algae removal in Wadebridge" },
-  { id: 6, category: "UPVC Cleaning", location: "Newquay", alt: "UPVC window frames restored to bright white in Newquay, Cornwall" },
-  { id: 7, category: "Window Cleaning", location: "Falmouth", alt: "Harbour-view property window cleaning in Falmouth — sea salt and grime removed" },
-  { id: 8, category: "Gutter Cleaning", location: "St Austell", alt: "Gutters cleared and downpipes flushed in St Austell — before and after" },
-  { id: 9, category: "Window Cleaning", location: "Bodmin", alt: "Residential window cleaning in Bodmin — streak-free results with pure water system" },
+  {
+    id: 1,
+    src: "/images/window-cleaning-newquay-detached-house-result.webp",
+    category: "Window Cleaning",
+    location: "Newquay",
+    alt: "Clean windows on a detached house in Newquay after professional window cleaning service by Rob's Window Cleaning",
+  },
+  {
+    id: 2,
+    src: "/images/gutter-fascia-soffit-cleaning-newquay-roofline.webp",
+    category: "Gutter Cleaning",
+    location: "Perranporth",
+    alt: "Clean white gutters and fascia on a brick property in Cornwall — gutter and roofline cleaning by Rob's Window Cleaning",
+  },
+  {
+    id: 3,
+    src: "/images/conservatory-window-cleaning-newquay-professional.webp",
+    category: "Conservatory Cleaning",
+    location: "Padstow",
+    alt: "Rob's Window Cleaning operative cleaning a conservatory with glass roof panels in Cornwall",
+  },
+  {
+    id: 4,
+    src: "/images/residential-window-cleaning-newquay-detached-house.webp",
+    category: "Window Cleaning",
+    location: "Truro",
+    alt: "Large detached red-brick house with clean UPVC windows — residential window cleaning in Newquay Cornwall",
+  },
+  {
+    id: 5,
+    src: "/images/fascia-soffit-gutter-cleaning-newquay-upvc-roofline.webp",
+    category: "Fascia & Soffit",
+    location: "Wadebridge",
+    alt: "Bright white UPVC fascia, soffits and gutters on a detached property — roofline cleaning in Newquay Cornwall",
+  },
+  {
+    id: 6,
+    src: "/images/upvc-conservatory-cleaning-newquay-frames.webp",
+    category: "UPVC Cleaning",
+    location: "Newquay",
+    alt: "Clean UPVC conservatory frames and glass panels — conservatory window cleaning in Newquay Cornwall",
+  },
+  {
+    id: 7,
+    src: "/images/window-cleaning-newquay-semi-detached-upvc.webp",
+    category: "Window Cleaning",
+    location: "Falmouth",
+    alt: "Semi-detached house with clean UPVC windows and white fascia — residential window cleaning Cornwall",
+  },
+  {
+    id: 8,
+    src: "/images/conservatory-roof-cleaning-newquay-polycarbonate.webp",
+    category: "Conservatory Cleaning",
+    location: "St Austell",
+    alt: "Conservatory with polycarbonate roof panels cleaned by Rob's Window Cleaning in Cornwall",
+  },
+  {
+    id: 9,
+    src: "/images/conservatory-cleaning-cornwall-before.webp",
+    category: "Conservatory Cleaning",
+    location: "Bodmin",
+    alt: "Conservatory exterior cleaning — polycarbonate roof and UPVC frames cleaned in Cornwall",
+  },
 ];
 
 const categories = ["All", ...new Set(galleryItems.map((g) => g.category))];
@@ -87,13 +142,13 @@ export default function GalleryPage() {
                 key={item.id}
                 className="group relative overflow-hidden rounded-2xl bg-slate-100 aspect-[4/3] border border-slate-100"
               >
-                {/* Placeholder image — replace with real images */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-brand-50 to-brand-100 text-center p-6">
-                  <div className="text-brand-300 text-6xl mb-3">🪟</div>
-                  <div className="badge badge-brand mb-2">{item.category}</div>
-                  <p className="text-sm text-brand-600 font-medium">{item.location}</p>
-                  <p className="text-xs text-slate-500 mt-2 leading-relaxed">{item.alt}</p>
-                </div>
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
                 <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5">
                   <div>
                     <div className="badge badge-brand mb-1">{item.category}</div>
