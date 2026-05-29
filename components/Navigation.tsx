@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, ChevronDown, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -73,13 +74,15 @@ export default function Navigation() {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex h-16 items-center justify-between lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group" aria-label="Rob's Window Cleaning — Home">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 shadow-brand group-hover:bg-brand-700 transition-colors">
-              <Sparkles className="h-5 w-5 text-white" />
-            </div>
-            <div>
-              <span className="block text-base font-bold text-slate-900 leading-tight">Rob's Window</span>
-              <span className="block text-xs font-medium text-brand-600 leading-tight">Cleaning · Newquay</span>
+          <Link href="/" className="flex-shrink-0" aria-label="Rob's Window Cleaning — Home">
+            <div className="relative h-10 w-[100px] lg:h-12 lg:w-[120px] overflow-hidden">
+              <Image
+                src="/logo.png"
+                alt="Rob's Window Cleaning — Newquay, Cornwall"
+                fill
+                className="object-cover object-top"
+                priority
+              />
             </div>
           </Link>
 

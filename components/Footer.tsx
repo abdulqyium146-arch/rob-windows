@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Phone, Mail, MapPin, Star, Sparkles, Facebook, Instagram, Clock, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Star, Facebook, Instagram, Clock, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
 const serviceLinks = [
@@ -69,13 +70,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-4">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600">
-                <Sparkles className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <span className="block text-sm font-bold text-white leading-tight">Rob&apos;s Window Cleaning</span>
-                <span className="block text-xs text-brand-400 leading-tight">Newquay, Cornwall</span>
+            <Link href="/" className="inline-block mb-4 rounded-xl bg-white px-3 py-2" aria-label="Rob's Window Cleaning — Home">
+              <div className="relative h-8 w-[80px] overflow-hidden">
+                <Image
+                  src="/logo.png"
+                  alt="Rob's Window Cleaning — Newquay, Cornwall"
+                  fill
+                  className="object-cover object-top"
+                />
               </div>
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed mb-5">
