@@ -188,36 +188,17 @@ export default function LocationPageTemplate({ location }: LocationPageTemplateP
                     <blockquote
                       key={t.id}
                       className="rounded-2xl border border-slate-100 bg-white p-6 shadow-soft"
-                      itemScope
-                      itemType="https://schema.org/Review"
                     >
-                      <div itemProp="itemReviewed" itemScope itemType="https://schema.org/LocalBusiness" className="sr-only">
-                        <meta itemProp="name" content="Rob's Window Cleaning" />
-                      </div>
-                      <div
-                        itemProp="reviewRating"
-                        itemScope
-                        itemType="https://schema.org/Rating"
-                        className="flex gap-0.5 mb-3"
-                      >
-                        <meta itemProp="ratingValue" content={String(t.rating)} />
-                        <meta itemProp="bestRating" content="5" />
+                      <div className="flex gap-0.5 mb-3" aria-label={`${t.rating} out of 5 stars`}>
                         {[1, 2, 3, 4, 5].map((s) => (
-                          <Star key={s} className="h-4 w-4 text-amber-400 fill-amber-400" />
+                          <Star key={s} className="h-4 w-4 text-amber-400 fill-amber-400" aria-hidden="true" />
                         ))}
                       </div>
-                      <p className="text-sm text-slate-700 leading-relaxed italic mb-3" itemProp="reviewBody">
-                        "{t.text}"
+                      <p className="text-sm text-slate-700 leading-relaxed italic mb-3">
+                        &ldquo;{t.text}&rdquo;
                       </p>
                       <footer className="flex items-center justify-between">
-                        <cite
-                          className="text-sm font-semibold text-slate-800 not-italic"
-                          itemProp="author"
-                          itemScope
-                          itemType="https://schema.org/Person"
-                        >
-                          <span itemProp="name">{t.name}</span>
-                        </cite>
+                        <cite className="text-sm font-semibold text-slate-800 not-italic">{t.name}</cite>
                         <span className="text-xs text-slate-400">{t.location}</span>
                       </footer>
                     </blockquote>

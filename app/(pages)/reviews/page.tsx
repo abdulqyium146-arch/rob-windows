@@ -3,7 +3,7 @@ import { Star, Quote } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { testimonials, averageRating } from "@/data/testimonials";
 import { formatDate } from "@/lib/utils";
-import { reviewSchema, breadcrumbSchema, reviewsPageSchema } from "@/lib/schema";
+import { breadcrumbSchema, reviewsPageSchema, localBusinessReviewsSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import TrustBadges from "@/components/TrustBadges";
 
@@ -23,19 +23,20 @@ export default function ReviewsPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsPageSchema()) }}
-      />
+      {/* Single LocalBusiness entity with reviews nested inside — correct schema.org pattern */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
-            reviewSchema(
+            localBusinessReviewsSchema(
               testimonials.map((t) => ({ name: t.name, rating: t.rating, text: t.text, date: t.date }))
             )
           ),
         }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsPageSchema()) }}
       />
       <script
         type="application/ld+json"
@@ -59,7 +60,7 @@ export default function ReviewsPage() {
               What Our Customers Say
             </h1>
             <p className="text-lg text-brand-200/80 leading-relaxed">
-              Genuine reviews from homeowners and businesses across Newquay and Cornwall. We're proud of our reputation and let our customers' words speak for themselves.
+              Genuine reviews from homeowners and businesses across Newquay and Cornwall. We&apos;re proud of our reputation and let our customers&apos; words speak for themselves.
             </p>
           </div>
         </div>
@@ -72,9 +73,9 @@ export default function ReviewsPage() {
             {/* Overall rating */}
             <div className="text-center rounded-2xl border border-slate-100 bg-slate-50 p-8 shadow-soft">
               <div className="text-6xl font-bold text-slate-900 mb-2">{averageRating.toFixed(1)}</div>
-              <div className="flex justify-center gap-1 mb-3">
+              <div className="flex justify-center gap-1 mb-3" aria-label={`${averageRating.toFixed(1)} out of 5 stars`}>
                 {[1, 2, 3, 4, 5].map((s) => (
-                  <Star key={s} className="h-6 w-6 text-amber-400 fill-amber-400" />
+                  <Star key={s} className="h-6 w-6 text-amber-400 fill-amber-400" aria-hidden="true" />
                 ))}
               </div>
               <div className="text-sm text-slate-500">Based on {testimonials.length} reviews</div>
@@ -86,7 +87,7 @@ export default function ReviewsPage() {
                 <div key={item.stars} className="flex items-center gap-4">
                   <div className="flex items-center gap-1 w-20 shrink-0">
                     <span className="text-sm text-slate-600">{item.stars}</span>
-                    <Star className="h-3.5 w-3.5 text-amber-400 fill-amber-400" />
+                    <Star className="h-3.5 w-3.5 text-amber-400 fill-amber-400" aria-hidden="true" />
                   </div>
                   <div className="flex-1 bg-slate-100 rounded-full h-2.5 overflow-hidden">
                     <div
@@ -100,51 +101,33 @@ export default function ReviewsPage() {
             </div>
           </div>
 
-          {/* Review grid */}
+          {/* Review grid — clean HTML, no microdata (JSON-LD handles schema) */}
           <div className="grid md:grid-cols-2 gap-6">
             {testimonials.map((t) => (
               <article
                 key={t.id}
                 className="rounded-2xl border border-slate-100 bg-white p-6 shadow-soft"
-                itemScope
-                itemType="https://schema.org/Review"
               >
-                <div itemProp="itemReviewed" itemScope itemType="https://schema.org/LocalBusiness" className="sr-only">
-                  <meta itemProp="name" content="Rob's Window Cleaning" />
-                </div>
                 <div className="flex items-start justify-between mb-4">
-                  <div
-                    className="flex gap-0.5"
-                    itemProp="reviewRating"
-                    itemScope
-                    itemType="https://schema.org/Rating"
-                  >
-                    <meta itemProp="ratingValue" content={String(t.rating)} />
-                    <meta itemProp="bestRating" content="5" />
+                  <div className="flex gap-0.5" aria-label={`${t.rating} out of 5 stars`}>
                     {[1, 2, 3, 4, 5].map((s) => (
                       <Star
                         key={s}
                         className={`h-4 w-4 ${s <= t.rating ? "text-amber-400 fill-amber-400" : "text-slate-200"}`}
+                        aria-hidden="true"
                       />
                     ))}
                   </div>
-                  <div className="text-brand-100">
+                  <div className="text-brand-100" aria-hidden="true">
                     <Quote className="h-8 w-8" />
                   </div>
                 </div>
-                <blockquote className="text-sm text-slate-700 leading-relaxed italic mb-4" itemProp="reviewBody">
-                  "{t.text}"
+                <blockquote className="text-sm text-slate-700 leading-relaxed italic mb-4">
+                  &ldquo;{t.text}&rdquo;
                 </blockquote>
                 <div className="flex items-center justify-between">
                   <div>
-                    <cite
-                      className="text-sm font-semibold text-slate-900 not-italic"
-                      itemProp="author"
-                      itemScope
-                      itemType="https://schema.org/Person"
-                    >
-                      <span itemProp="name">{t.name}</span>
-                    </cite>
+                    <cite className="text-sm font-semibold text-slate-900 not-italic">{t.name}</cite>
                     <div className="text-xs text-slate-400">{t.location}</div>
                     <div className="text-xs text-brand-600 mt-0.5">{t.service}</div>
                   </div>

@@ -9,20 +9,16 @@ import type { FAQ } from "@/types";
 interface FAQAccordionProps {
   faqs: FAQ[];
   className?: string;
-  schema?: boolean;
 }
 
-export default function FAQAccordion({ faqs, className, schema = true }: FAQAccordionProps) {
+export default function FAQAccordion({ faqs, className }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className={cn("space-y-3", className)} itemScope={schema} itemType={schema ? "https://schema.org/FAQPage" : undefined}>
+    <div className={cn("space-y-3", className)}>
       {faqs.map((faq, index) => (
         <div
           key={index}
-          itemScope={schema}
-          itemProp={schema ? "mainEntity" : undefined}
-          itemType={schema ? "https://schema.org/Question" : undefined}
           className={cn(
             "rounded-2xl border transition-all duration-200",
             openIndex === index
@@ -34,14 +30,13 @@ export default function FAQAccordion({ faqs, className, schema = true }: FAQAcco
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
             className="flex w-full items-start justify-between gap-4 px-6 py-5 text-left"
             aria-expanded={openIndex === index}
+            aria-controls={`faq-answer-${index}`}
+            id={`faq-question-${index}`}
           >
-            <span
-              className="text-sm font-semibold text-slate-900 leading-relaxed"
-              itemProp={schema ? "name" : undefined}
-            >
+            <span className="text-sm font-semibold text-slate-900 leading-relaxed">
               {faq.question}
             </span>
-            <span className="shrink-0 mt-0.5">
+            <span className="shrink-0 mt-0.5" aria-hidden="true">
               {openIndex === index ? (
                 <Minus className="h-4 w-4 text-brand-600" />
               ) : (
@@ -54,20 +49,17 @@ export default function FAQAccordion({ faqs, className, schema = true }: FAQAcco
             {openIndex === index && (
               <motion.div
                 key="content"
+                id={`faq-answer-${index}`}
+                role="region"
+                aria-labelledby={`faq-question-${index}`}
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.25, ease: "easeInOut" }}
                 className="overflow-hidden"
-                itemScope={schema}
-                itemProp={schema ? "acceptedAnswer" : undefined}
-                itemType={schema ? "https://schema.org/Answer" : undefined}
               >
                 <div className="px-6 pb-5">
-                  <p
-                    className="text-sm text-slate-600 leading-relaxed"
-                    itemProp={schema ? "text" : undefined}
-                  >
+                  <p className="text-sm text-slate-600 leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>

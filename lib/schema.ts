@@ -508,22 +508,34 @@ export function imageGallerySchema() {
   };
 }
 
-export function reviewSchema(
+export function localBusinessReviewsSchema(
   reviews: Array<{ name: string; rating: number; text: string; date: string }>
 ) {
-  return reviews.map((r) => ({
+  return {
     "@context": "https://schema.org",
-    "@type": "Review",
-    author: { "@type": "Person", name: r.name },
-    reviewRating: { "@type": "Rating", ratingValue: r.rating, bestRating: 5 },
-    reviewBody: r.text,
-    datePublished: r.date,
-    itemReviewed: {
-      "@type": "LocalBusiness",
-      "@id": `${siteConfig.url}/#business`,
-      name: siteConfig.name,
+    "@type": "LocalBusiness",
+    "@id": `${siteConfig.url}/#business`,
+    name: siteConfig.name,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: String(siteConfig.rating.value),
+      reviewCount: String(siteConfig.rating.count),
+      bestRating: "5",
+      worstRating: "1",
     },
-  }));
+    review: reviews.map((r) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: r.name },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: String(r.rating),
+        bestRating: "5",
+        worstRating: "1",
+      },
+      reviewBody: r.text,
+      datePublished: r.date,
+    })),
+  };
 }
 
 export function reviewsPageSchema() {
