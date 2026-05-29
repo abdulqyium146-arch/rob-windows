@@ -259,13 +259,6 @@ export function serviceSchema(
       name: siteConfig.name,
       url: siteConfig.url,
       telephone: siteConfig.phone.replace(/\s/g, ""),
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: siteConfig.rating.value,
-        reviewCount: siteConfig.rating.count,
-        bestRating: "5",
-        worstRating: "1",
-      },
     },
     areaServed: areas.map((area) => ({
       "@type": "City",
@@ -358,13 +351,6 @@ export function localBusinessPerLocationSchema(location: {
       containedInPlace: { "@type": "State", name: location.county },
     },
     parentOrganization: { "@id": `${siteConfig.url}/#business` },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: siteConfig.rating.value,
-      reviewCount: siteConfig.rating.count,
-      bestRating: "5",
-      worstRating: "1",
-    },
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -549,17 +535,6 @@ export function reviewsPageSchema() {
     inLanguage: "en-GB",
     isPartOf: { "@id": `${siteConfig.url}/#website` },
     about: { "@id": `${siteConfig.url}/#business` },
-    mainEntity: {
-      "@type": "LocalBusiness",
-      "@id": `${siteConfig.url}/#business`,
-      name: siteConfig.name,
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: siteConfig.rating.value,
-        reviewCount: siteConfig.rating.count,
-        bestRating: "5",
-        worstRating: "1",
-      },
-    },
+    mainEntity: { "@id": `${siteConfig.url}/#business` },
   };
 }
